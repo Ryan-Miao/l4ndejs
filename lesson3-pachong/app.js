@@ -46,31 +46,32 @@ app.get('/woshimrf', function (req, res, next) {
             }
 
             let rs = sres.text;
+            res.send(rs);
 
-            parseString(rs, { explicitArray: false, ignoreAttrs: true }, function (err, result) {
-                if (err) {
-                    return next(err);
-                }
-
-                postcount = result.postcount;
-                let entries = result.entry;
-                if (entries == undefined) {
-                    return next("Done, entry is not exist.");
-                }
-
-                entries.forEach(function (entry, index) {
-                    let {id, views} = entry;
-                    if(stats.get(id)==undefined){
-                        stats.set(id, entry);
-                    }
-                });
-
-            });
+            // parseString(rs, { explicitArray: false, ignoreAttrs: true }, function (err, result) {
+            //     if (err) {
+            //         return next(err);
+            //     }
+            //
+            //     postcount = result.postcount;
+            //     let entries = result.entry;
+            //     if (entries == undefined) {
+            //         return next("Done, entry is not exist.");
+            //     }
+            //
+            //     entries.forEach(function (entry, index) {
+            //         let {id, views} = entry;
+            //         if(stats.get(id)==undefined){
+            //             stats.set(id, entry);
+            //         }
+            //     });
+            //
+            // });
 
 
         });
 
-    res.send("done");
+    // res.send("done");
 
 });
 
